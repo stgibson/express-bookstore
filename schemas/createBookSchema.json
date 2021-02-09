@@ -110,5 +110,5 @@
             ]
         }
     },
-    "additionalProperties": true
+    "additionalProperties": false
 }

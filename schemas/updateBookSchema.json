@@ -98,5 +98,5 @@
             ]
         }
     },
-    "additionalProperties": true
+    "additionalProperties": false
 }

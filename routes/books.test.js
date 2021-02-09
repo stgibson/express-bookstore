@@ -140,6 +140,13 @@ describe("book routes tests (with cleanup)", () => {
       expect(response.statusCode).toEqual(400);
     });
 
+    test("can't create a book with additional property", async () => {
+      const data = { ...testBook2 };
+      data.badprop = "Bad Property"
+      const response = await request(app).post("/books").send(data);
+      expect(response.statusCode).toEqual(400);
+    });
+
     test("can't create a book with no isbn", async () => {
       const data = { ...testBook2 };
       delete data.isbn;
@@ -315,6 +322,22 @@ describe("book routes tests (with cleanup)", () => {
 
     test("can't update a book without any data", async () => {
       const response = await request(app).put(`/books/${testBook1.isbn}`);
+      expect(response.statusCode).toEqual(400);
+    });
+
+    test("can't update a book with isbn", async () => {
+      const data = { ...testBook2 };
+      const response = await request(app).put(`/books/${testBook1.isbn}`)
+        .send(data);
+      expect(response.statusCode).toEqual(400);
+    });
+
+    test("can't update a book with additional property", async () => {
+      const data = { ...testBook2 };
+      delete data.isbn;
+      data.badprop = "Bad Property";
+      const response = await request(app).put(`/books/${testBook1.isbn}`)
+        .send(data);
       expect(response.statusCode).toEqual(400);
     });
 
