@@ -1,0 +1,2 @@
+Reviewed how to delete an item in an object at https://developer.mozilla.org/
+    en-US/docs/Web/JavaScript/Reference/Operators/delete
